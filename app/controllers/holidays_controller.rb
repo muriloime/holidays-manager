@@ -1,7 +1,7 @@
-class UsersController < ApplicationController
+class HolidaysController < ApplicationController
 
   def index
-    @users = User.all
+    @holidays = Holiday.all
   end
 
   def show
