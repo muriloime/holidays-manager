@@ -47,4 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'autotest'
   gem 'factory_girl_rails'
+
+  gem 'bootstrap-sass',       '3.2.0.0'
+  gem 'autoprefixer-rails'
 end

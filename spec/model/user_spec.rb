@@ -9,8 +9,7 @@ describe "user" do
   end
 
   it "has unique login" do
-
-
+    expect { FactoryGirl.create(:user) }.to raise_error
   end
 
 end

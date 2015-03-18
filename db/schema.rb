@@ -11,26 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316191435) do
+ActiveRecord::Schema.define(version: 20150317161450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "holidays", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
     t.date     "start_date"
     t.date     "end_date"
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "holidays", ["user_id", "created_at"], name: "index_holidays_on_user_id_and_created_at", using: :btree
+  add_index "holidays", ["user_id"], name: "index_holidays_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
     t.string   "password"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "manager",         default: false, null: false
+    t.string   "password_digest"
   end
 
+  add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
+
+  add_foreign_key "holidays", "users"
 end
