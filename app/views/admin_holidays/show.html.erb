@@ -11,13 +11,13 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Content:</strong>
   <%= @holiday.content %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= current_user.name %>
+  <%= @holiday.user.name %>
 </p>
 
 <p>
@@ -25,5 +25,5 @@
   <%= @holiday.status %>
 </p>
 
-<%= link_to 'Edit', edit_holiday_path(@holiday) %> |
-<%= link_to 'Back', holidays_path %>
+<%= link_to 'Edit', edit_admin_holiday_path(@holiday) %> |
+<%= link_to 'Back', admin_holidays_path %>

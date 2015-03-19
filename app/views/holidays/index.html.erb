@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Holidays</h1>
+<h1>Listing Holidays of <%= @holidays.first.user.name %></h1>
 
-<table>
+<table style="width:100%">
   <thead>
     <tr>
       <th>Start date</th>
       <th>End date</th>
       <th>Description</th>
       <th>User</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= holiday.start_date %></td>
         <td><%= holiday.end_date %></td>
         <td><%= holiday.content %></td>
+        <td><%= holiday.status %></td>
         <td><%= link_to 'Show', holiday %></td>
         <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
         <td><%= link_to 'Destroy', holiday, method: :delete, data: { confirm: 'Are you sure?' } %></td>

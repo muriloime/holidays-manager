@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :is_logged_in , [:create, :new]
+
   def new
     if logged_in?
       redirect_to current_user
@@ -20,7 +23,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url
   end
 
 
