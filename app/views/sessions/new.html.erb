@@ -8,8 +8,8 @@
         <%= f.label :login %>
         <%= f.email_field :login, class: 'form-control' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password_digest %>
+        <%= f.password_field :password_digest, class: 'form-control' %>
 
         <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
