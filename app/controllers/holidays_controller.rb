@@ -43,7 +43,7 @@ class HolidaysController < ApplicationController
     @holiday = Holiday.find(params[:id])
     if @holiday.update(holiday_params)
       redirect_to admin_holiday_path(@holiday) if current_user.manager == true
-      redirect_to @holiday if current_user.manager == false || current_user.manager == nil
+      redirect_to @holiday if current_user.manager == false
     else
       render 'edit'
     end
