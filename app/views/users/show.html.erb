@@ -9,14 +9,22 @@
             {
                 title: '<%= holiday.user.name %>',
                 start: '<%= holiday.start_date %>',
-                end: '<%= holiday.end_date %>'
+                end: '<%= holiday.end_date %>',
+                url: '<%= holiday_path(holiday)%>'
+
             },
             <% end %>
-
         ],
-        color: 'green',
-        textColor: 'black'
-    })
+        eventClick: function(event) {
+            if (event.url) {
+                window.open(event.url);
+                return false;
+            }
+        },
+        eventMouseover: function(event) {
+
+        }
+    });
 
 </script>
 

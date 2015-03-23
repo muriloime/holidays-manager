@@ -24,7 +24,7 @@
         <td><%= holiday.status %></td>
         <td><%= link_to 'Show', admin_holiday_path(holiday) %></td>
         <td><%= link_to 'Change Status', edit_admin_holiday_path(holiday) %></td>
-        <td><%= link_to 'Destroy', holiday, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_holiday_path(holiday), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

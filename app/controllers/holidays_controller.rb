@@ -6,9 +6,6 @@ class HolidaysController < ApplicationController
 
   def show
     @holiday = Holiday.find(params[:id])
-    if @holiday.user != current_user
-      redirect_to root_url
-    end
   end
 
   def new
@@ -31,7 +28,6 @@ class HolidaysController < ApplicationController
     @holiday = current_user.holidays.build(holiday_params)
     @holiday.status = "Pending"
     @holiday.status = "Confirmed" if current_user.manager?
-
     if @holiday.save
       redirect_to holiday_path(@holiday)
     else
@@ -42,8 +38,7 @@ class HolidaysController < ApplicationController
   def update
     @holiday = Holiday.find(params[:id])
     if @holiday.update(holiday_params)
-      redirect_to admin_holiday_path(@holiday) if current_user.manager == true
-      redirect_to @holiday if current_user.manager == false
+      redirect_to @holiday
     else
       render 'edit'
     end
@@ -55,8 +50,7 @@ class HolidaysController < ApplicationController
       redirect_to root_url
     end
     @holiday.destroy
-    redirect_to admin_holidays_path if manager?
-    redirect_to holidays_path else
+    redirect_to holidays_path
   end
 
   private

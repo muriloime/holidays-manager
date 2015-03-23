@@ -25,5 +25,5 @@
   <%= @holiday.status %>
 </p>
 
-<%= link_to 'Edit', edit_holiday_path(@holiday) %> |
+<%= link_to 'Edit', edit_holiday_path(@holiday) if current_user == @holiday.user %> |
 <%= link_to 'Back', holidays_path %>

@@ -17,22 +17,18 @@ class AdminHolidaysController < ApplicationController
     @holiday = Holiday.find(params[:id])
   end
 
-  def create
-    @holiday = current_user.holidays.build(holiday_params)
-    @holiday.status = "Pending"
-
-    if @holiday.save
-
-      redirect_to @holiday
+  def update
+    @holiday = Holiday.find(params[:id])
+    if @holiday.update(holiday_params)
+      redirect_to admin_holiday_path(@holiday)
     else
-      render 'new'
+      render 'edit'
     end
   end
 
   def destroy
     @holiday = Holiday.find(params[:id])
     @holiday.destroy
-
     redirect_to admin_holidays_path
   end
 
