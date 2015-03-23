@@ -27,4 +27,8 @@ module SessionsHelper
     end
   end
 
+  def manager?
+    current_user.manager == true
+  end
+
 end

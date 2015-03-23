@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root  'sessions#new'
   get    'help'    => 'static_pages#help'
   get    'about'   => 'static_pages#about'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   resources :holidays
   resources :users
   resources :admin_holidays
+  resources :admin_users
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -2,9 +2,7 @@ class AdminHolidaysController < ApplicationController
   before_action :is_admin_in
 
   def is_admin_in
-    if current_user.manager == false
-      redirect_to root_url
-    end
+    manager_action
   end
 
   def index
@@ -24,6 +22,7 @@ class AdminHolidaysController < ApplicationController
     @holiday.status = "Pending"
 
     if @holiday.save
+
       redirect_to @holiday
     else
       render 'new'

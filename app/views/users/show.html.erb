@@ -1,2 +1,23 @@
-<h1>Welcome <%= @user.name %></h1>
+<h1>Callendar of Holidays</h1>
+
+<div id="calendar"></div>
+<script>
+    jQuery.noConflict();
+    $('#calendar').fullCalendar({
+        events: [
+            <% @holidays.each do |holiday| %>
+            {
+                title: '<%= holiday.user.name %>',
+                start: '<%= holiday.start_date %>',
+                end: '<%= holiday.end_date %>'
+            },
+            <% end %>
+
+        ],
+        color: 'green',
+        textColor: 'black'
+    })
+
+</script>
+
 

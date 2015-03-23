@@ -14,7 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -47,8 +49,10 @@ group :development, :test do
   gem 'autotest'
   gem 'factory_girl_rails'
 
-  gem 'bootstrap-sass',       '3.2.0.0'
+  gem 'autoprefixer-rails'
+  gem 'bootstrap-sass', '~> 3.3.1'
   gem 'autoprefixer-rails'
 
-
+  gem 'fullcalendar-rails'
+  gem 'momentjs-rails'
 end

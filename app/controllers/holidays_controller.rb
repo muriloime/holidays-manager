@@ -55,8 +55,8 @@ class HolidaysController < ApplicationController
       redirect_to root_url
     end
     @holiday.destroy
-
-    redirect_to holidays_path
+    redirect_to admin_holidays_path if manager?
+    redirect_to holidays_path else
   end
 
   private
