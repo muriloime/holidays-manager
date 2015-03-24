@@ -6,7 +6,9 @@ class AdminHolidaysController < ApplicationController
   end
 
   def index
-    @holidays = Holiday.all
+    @holidays_pending = Holiday.where(status: "Pending")
+    @holidays_confirmed = Holiday.where(status: "Confirmed")
+    @holidays_canceled = Holiday.where(status: "Canceled")
   end
 
   def show

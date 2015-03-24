@@ -10,6 +10,10 @@ module SessionsHelper
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def current_user?
+     redirect_to @current_user if @current_user != User.find_by(id: session[:user_id])
+  end
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
@@ -29,6 +33,14 @@ module SessionsHelper
 
   def manager?
     current_user.manager == true
+  end
+
+  def count_holidays_pending
+    if logged_in?
+      if current_user.manager?
+        return Holiday.where(status: "Pending").count
+      end
+    end
   end
 
 end

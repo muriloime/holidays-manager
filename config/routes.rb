@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
+  post   'password_change'   => 'users#update_password'
+
   resources :holidays
   resources :users
   resources :admin_holidays

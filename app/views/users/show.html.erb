@@ -7,23 +7,25 @@
         events: [
             <% @holidays.each do |holiday| %>
             {
+                textColor: 'black',
                 title: '<%= holiday.user.name %>',
                 start: '<%= holiday.start_date %>',
                 end: '<%= holiday.end_date %>',
-                url: '<%= holiday_path(holiday)%>'
-
+                url: '<%= if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end %>',
+                color: '<%= if (holiday.status=="Pending") then "gray" elsif (holiday.status=="Confirmed") then "blue" else "red" end%>'
             },
+
             <% end %>
         ],
         eventClick: function(event) {
             if (event.url) {
-                window.open(event.url);
+                window.location.href(event.url);
                 return false;
             }
-        },
-        eventMouseover: function(event) {
-
         }
+
+
+
     });
 </script>
 

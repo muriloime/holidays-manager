@@ -1,0 +1,39 @@
+<h1>Change Password of <%= current_user.name %></h1>
+
+<%= form_for :user, :url => password_change_path do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this holiday from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label "Old Password" %><br>
+      <%= f.password_field :password %>
+    </p>
+
+    <p>
+      <%= f.label :new_password %><br>
+      <%= f.password_field :new_password %>
+    </p>
+
+    <p>
+      <%= f.label :repeat_new_password %><br>
+      <%= f.password_field :repeat_new_password %>
+    </p>
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>
+
+
+<%= link_to 'Home', @user %>

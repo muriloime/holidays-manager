@@ -26,4 +26,6 @@
 </p>
 
 <%= link_to 'Edit', edit_holiday_path(@holiday) if current_user == @holiday.user %> |
-<%= link_to 'Back', holidays_path %>
+<%= link_to 'My Holidays', holidays_path %> |
+<%= link_to 'Home', @holiday.user %>
+
