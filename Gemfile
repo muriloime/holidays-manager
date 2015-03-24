@@ -29,6 +29,13 @@ gem 'bcrypt'
 
 gem 'haml'
 
+
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'fullcalendar-rails'
+gem 'autoprefixer-rails'
+
+gem 'momentjs-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -49,10 +56,5 @@ group :development, :test do
   gem 'autotest'
   gem 'factory_girl_rails'
 
-  gem 'autoprefixer-rails'
-  gem 'bootstrap-sass', '~> 3.3.1'
-  gem 'autoprefixer-rails'
-
-  gem 'fullcalendar-rails'
-  gem 'momentjs-rails'
 end
+
