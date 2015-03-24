@@ -2,7 +2,7 @@
 
 <div id="calendar"></div>
 <script>
-    jQuery.noConflict();
+    jQuery.noConflict()
     $('#calendar').fullCalendar({
         events: [
             <% @holidays.each do |holiday| %>
@@ -25,7 +25,6 @@
 
         }
     });
-
 </script>
 
 
