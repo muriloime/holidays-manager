@@ -25,5 +25,25 @@
   <%= @holiday.status %>
 </p>
 
-<%= link_to 'Edit', edit_admin_holiday_path(@holiday) %> |
-<%= link_to 'Home', current_user %>
+<p>
+  <strong>Days to Start:</strong>
+  <%= (@holiday.start_date - Date.today).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Days to End:</strong>
+  <%= (@holiday.end_date - Date.today).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Total of Days:</strong>
+  <%= (@holiday.end_date - @holiday.start_date).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Current?</strong>
+  <%= if (@holiday.start_date <= Date.today) && (@holiday.start_date >= Date.today) then true else false end %>
+</p>
+
+<%= link_to 'Change Status', edit_admin_holiday_path(@holiday) %> |
+<%= link_to 'Back', admin_holidays_path %>

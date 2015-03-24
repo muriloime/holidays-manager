@@ -11,18 +11,38 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Content:</strong>
   <%= @holiday.content %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @holiday.user.name%>
+  <%= @holiday.user.name %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @holiday.status %>
+</p>
+
+<p>
+  <strong>Days to Start:</strong>
+  <%= (@holiday.start_date - Date.today).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Days to End:</strong>
+  <%= (@holiday.end_date - Date.today).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Total of Days:</strong>
+  <%= (@holiday.end_date - @holiday.start_date).to_s.chomp('/1')  %>
+</p>
+
+<p>
+  <strong>Current?</strong>
+  <%= if (@holiday.start_date <= Date.today) && (@holiday.start_date >= Date.today) then true else false end %>
 </p>
 
 <%= link_to 'Edit', edit_holiday_path(@holiday) if current_user == @holiday.user %> |
