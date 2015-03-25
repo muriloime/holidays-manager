@@ -28,19 +28,37 @@ class HolidaysController < ApplicationController
     @holiday = current_user.holidays.build(holiday_params)
     @holiday.status = "Pending"
     @holiday.status = "Confirmed" if current_user.manager?
-    if @holiday.save
-      redirect_to holiday_path(@holiday)
-    else
+    @holiday_exist = Holiday.where(:start_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id)
+    @holiday_exist += Holiday.where(:end_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id)
+    @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ?", @holiday.start_date, @holiday.end_date, current_user.id)
+    @holiday_exist.uniq!
+    if  @holiday_exist.count > 0
+      @alert_box = true
       render 'new'
+    else
+      if @holiday.save
+        redirect_to holiday_path(@holiday)
+      else
+        render 'new'
+      end
     end
   end
 
   def update
     @holiday = Holiday.find(params[:id])
-    if @holiday.update(holiday_params)
-      redirect_to @holiday
-    else
+    @holiday_exist = Holiday.where(:start_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id, id: !@holiday.id)
+    @holiday_exist += Holiday.where(:end_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id, id: !@holiday.id)
+    @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ? AND id != ?", @holiday.start_date, @holiday.end_date, current_user.id, @holiday.id)
+    @holiday_exist.uniq!
+    if  @holiday_exist.count > 0
+      @alert_box = true
       render 'edit'
+    else
+      if @holiday.update(holiday_params)
+        redirect_to @holiday
+      else
+        render 'edit'
+      end
     end
   end
 

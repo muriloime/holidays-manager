@@ -30,16 +30,23 @@
 <%end%>
   <tbody>
     <% @holidays.each do |holiday| %>
+
+      <% days_start = (holiday.start_date - Date.today).to_s.chomp('/1')
+         days_end = (holiday.end_date - Date.today).to_s.chomp('/1')
+         days_total = (holiday.end_date - holiday.start_date).to_s.chomp('/1')
+         if (days_start.to_i <= 0) then days_start = "-" end
+         if (days_end.to_i <= 0) then days_end = "-" end
+      %>
       <tr>
-        <td><%= holiday.start_date %></td>
-        <td><%= holiday.end_date %></td>
+        <td><%= holiday.start_date.strftime("%d/%m/%y") %></td>
+        <td><%= holiday.end_date.strftime("%d/%m/%y") %></td>
         <td><%= holiday.content %></td>
         <td><%= holiday.user.name %></td>
         <td><%= holiday.status %></td>
-        <td><%= (holiday.start_date - Date.today).to_s.chomp('/1')  %></td>
-        <td><%= (holiday.end_date - Date.today).to_s.chomp('/1') %></td>
-        <td><%= (holiday.end_date - holiday.start_date).to_s.chomp('/1')  %></td>
-        <td><%= if (holiday.start_date <= Date.today) && (holiday.start_date >= Date.today) then true else false end %></td>
+        <td><%= days_start  %></td>
+        <td><%= days_end %></td>
+        <td><%= days_total  %></td>
+        <td><%= if (days_start == "-" && days_end != "-") then true else false end %></td>
         <td><%= link_to 'Show', holiday %></td>
         <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
         <td><%= link_to 'Destroy', holiday, method: :delete, data: { confirm: 'Are you sure?' } %></td>

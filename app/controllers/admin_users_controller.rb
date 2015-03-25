@@ -23,7 +23,7 @@ before_action :is_admin_in
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update_attributes(user_params)
       redirect_to admin_user_path(@user)
     else
       render 'edit'
@@ -51,7 +51,7 @@ before_action :is_admin_in
 
   private
   def user_params
-    params.require(:user).permit(:name, :login, :password, :manager)
+    params.require(:user).permit(:name, :login)
   end
 
 
