@@ -14,15 +14,13 @@
     <% if @alert_box == true %>
         <div id="dialog-confirm"></div>
         <script>
-            alert("Occurred a conflict with the follow Holliday(s):\n" +
+            alert("You have already Holliday(s) between these dates:\n" +
                     <% @holiday_exist.each do |holiday| %>
-                    "\n User Name:<%= holiday.user.name %>" +
-                    "\n Start Date:<%= holiday.start_date.strftime("%d/%m/%y") %>" +
-                    "\n End Date:<%= holiday.end_date %>" +
-                    "\n Content:<%= holiday.content %> \n" +
+                    "\n Start Date: <%= holiday.start_date.strftime("%d/%m/%y") %>" +
+                    "\n End Date: <%= holiday.end_date.strftime("%d/%m/%y") %>" +
+                    "\n Content: <%= holiday.content %> \n" +
                     <% end %>
                 "\n Please delete these Holiday(s) first. ")
-
         </script>
     <% end %>
 
@@ -32,7 +30,7 @@
   </div>
   <div class="field">
     <%= f.label :end_date %><br>
-    <%= f.date_select(:start_date, order: [:day, :month, :year])%>
+    <%= f.date_select(:end_date, order: [:day, :month, :year])%>
   </div>
   <div class="field">
     <%= f.label :content %><br>
