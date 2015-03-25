@@ -30,7 +30,8 @@ gem 'bcrypt'
 
 gem 'haml'
 
-gem 'bootstrap-sass', '~> 3.3.1'
+gem 'bootstrap-sass', '~> 3.3.4'
+
 gem 'fullcalendar-rails'
 gem 'autoprefixer-rails'
 

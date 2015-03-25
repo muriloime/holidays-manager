@@ -194,7 +194,7 @@ DEPENDENCIES
   autoprefixer-rails
   autotest
   bcrypt
-  bootstrap-sass (~> 3.3.1)
+  bootstrap-sass (~> 3.3.4)
   byebug
   coffee-rails (~> 4.1.0)
   execjs
