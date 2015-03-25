@@ -10,11 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_self
+
 //= require jquery
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require_self
 //= require moment
 //= require fullcalendar
 //= require_tree .
