@@ -37,6 +37,7 @@ class HolidaysController < ApplicationController
       @holiday_exist.each do |holiday|
         flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
         flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> Status: #{holiday.status} </br>"
         flash.now[:info] += "</br> Content: #{holiday.content} </br>"
       end
       flash.now[:info] += "</br> Please delete these Holiday(s) first. "
@@ -62,6 +63,7 @@ class HolidaysController < ApplicationController
       @holiday_exist.each do |holiday|
         flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
         flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> Status: #{holiday.status} </br>"
         flash.now[:info] += "</br> Content: #{holiday.content} </br>"
       end
       flash.now[:info] += "</br> Please delete these Holiday(s) first. "
