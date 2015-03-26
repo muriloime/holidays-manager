@@ -1,34 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing All Holidays</h1>
 
-<table style="width:100%">
-  <thead>
-    <tr>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Content</th>
-      <th>User</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @holidays.each do |holiday| %>
-      <tr>
-        <td><%= holiday.start_date %></td>
-        <td><%= holiday.end_date %></td>
-        <td><%= holiday.content %></td>
-        <td><%= holiday.user.name %></td>
-        <td><%= holiday.status %></td>
-        <td><%= link_to 'Show', admin_holiday_path(holiday) %></td>
-        <td><%= link_to 'Change Status', edit_admin_holiday_path(holiday) %></td>
-        <td><%= link_to 'Destroy', admin_holiday_path(holiday), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<%= render 'holidays_table', :collection => @holidays = @holidays_pending %>
+<%= render 'holidays_table', :collection => @holidays = @holidays_confirmed %>
+<%= render 'holidays_table', :collection => @holidays = @holidays_canceled %>
 

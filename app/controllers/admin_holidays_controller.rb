@@ -6,7 +6,9 @@ class AdminHolidaysController < ApplicationController
   end
 
   def index
-    @holidays = Holiday.all
+    @holidays_pending = Holiday.where(status: "Pending")
+    @holidays_confirmed = Holiday.where(status: "Confirmed")
+    @holidays_canceled = Holiday.where(status: "Canceled")
   end
 
   def show
@@ -20,6 +22,7 @@ class AdminHolidaysController < ApplicationController
   def update
     @holiday = Holiday.find(params[:id])
     if @holiday.update(holiday_params)
+      flash[:notice] = "The holiday status was changed with sucess!"
       redirect_to admin_holiday_path(@holiday)
     else
       render 'edit'
@@ -29,12 +32,13 @@ class AdminHolidaysController < ApplicationController
   def destroy
     @holiday = Holiday.find(params[:id])
     @holiday.destroy
+    flash[:notice] = "The holiday was deleted with sucess!"
     redirect_to admin_holidays_path
   end
 
   private
   def holiday_params
-    params.require(:holiday).permit(:content, :start_date, :end_date, :status)
+    params.require(:holiday).permit(:status)
   end
 
 

@@ -1,13 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% days_start = (@holiday.start_date - Date.today).to_s.chomp('/1')
+days_end = (@holiday.end_date - Date.today + 1).to_s.chomp('/1')
+days_total = (@holiday.end_date - @holiday.start_date + 1).to_s.chomp('/1')
+if (days_start.to_i <= 0) then days_start = "-" end
+if (days_end.to_i <= 0) then days_end = "-" end %>
 
 <p>
   <strong>Start date:</strong>
-  <%= @holiday.start_date %>
+  <%= @holiday.start_date.strftime("%d/%m/%y") %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @holiday.end_date %>
+  <%= @holiday.end_date.strftime("%d/%m/%y") %>
 </p>
 
 <p>
@@ -25,5 +29,30 @@
   <%= @holiday.status %>
 </p>
 
-<%= link_to 'Edit', edit_admin_holiday_path(@holiday) %> |
-<%= link_to 'Back', admin_holidays_path %>
+<p>
+  <strong>Days to Start:</strong>
+  <%= days_start  %>
+</p>
+
+<p>
+  <strong>Days to End:</strong>
+  <%= days_end  %>
+</p>
+
+<p>
+  <strong>Total of Days:</strong>
+  <%= days_total  %>
+</p>
+
+<p>
+  <strong>Current?</strong>
+  <%= if (days_start == "-" && days_end != "-") then true else false end %>
+</p>
+
+<% if @holiday.user == current_user %>
+    <%= link_to 'Edit', edit_holiday_path(@holiday) %> |
+<% else %>
+    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday) %> |
+<% end %>
+<%= link_to 'Holiday Settings', admin_holidays_path %> |
+<%= link_to 'Callendar', root_url %>

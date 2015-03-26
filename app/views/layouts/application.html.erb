@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= stylesheet_link_tag 'application', media: 'all',
-                          'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
@@ -13,7 +12,7 @@
 <body>
 <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <div class="<%= message_type %>"><%= message.html_safe %></div>
     <% end %>
 <div class="container">
   <%= yield %>

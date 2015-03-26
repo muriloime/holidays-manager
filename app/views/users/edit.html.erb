@@ -1,6 +1,6 @@
-<h1>New User</h1>
+<h1>Change Password of <%= current_user.name %></h1>
 
-<%= form_for @user, :url => admin_users_path(@user)  do |f| %>
+<%= form_for :user, :url => password_change_path do |f| %>
     <% if @user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@user.errors.count, "error") %> prohibited this holiday from being saved:</h2>
@@ -14,22 +14,20 @@
     <% end %>
 
     <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.label "Old Password" %><br>
+      <%= f.password_field :password %>
     </p>
 
     <p>
-      <%= f.label "Login (must to be an email)" %><br>
-      <%= f.text_field :login %>
+      <%= f.label :new_password %><br>
+      <%= f.password_field :new_password %>
     </p>
 
-    <div class="field">
-      <p>
-        <%= f.label :manager%>
-        <%= f.radio_button :manager, FALSE %> FALSE
-        <%= f.radio_button :manager, TRUE %> TRUE
-      </p>
-    </div>
+    <p>
+      <%= f.label :repeat_new_password %><br>
+      <%= f.password_field :repeat_new_password %>
+    </p>
+
 
     <div class="actions">
       <%= f.submit %>
@@ -38,5 +36,4 @@
 <% end %>
 
 
-
-<%= link_to 'Back', admin_users_path %>
+<%= link_to 'Callendar', root_url %>
