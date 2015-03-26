@@ -22,6 +22,7 @@ class AdminHolidaysController < ApplicationController
   def update
     @holiday = Holiday.find(params[:id])
     if @holiday.update(holiday_params)
+      flash[:notice] = "The holiday status was changed with sucess!"
       redirect_to admin_holiday_path(@holiday)
     else
       render 'edit'
@@ -31,6 +32,7 @@ class AdminHolidaysController < ApplicationController
   def destroy
     @holiday = Holiday.find(params[:id])
     @holiday.destroy
+    flash[:notice] = "The holiday was deleted with sucess!"
     redirect_to admin_holidays_path
   end
 

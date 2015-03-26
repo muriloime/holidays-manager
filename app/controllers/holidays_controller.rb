@@ -33,11 +33,17 @@ class HolidaysController < ApplicationController
     @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ?", @holiday.start_date, @holiday.end_date, current_user.id)
     @holiday_exist.uniq!
     if  @holiday_exist.count > 0
-      @alert_box = true
+      flash.now[:info] = "You have already Holliday(s) between these dates:</br>"
+      @holiday_exist.each do |holiday|
+        flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> Content: #{holiday.content} </br>"
+      end
+      flash.now[:info] += "</br> Please delete these Holiday(s) first. "
       render 'new'
     else
       if @holiday.save
-        flash[:notice] = "Informações salvas com sucesso."
+        flash[:notice] = "Holiday was created with sucess!"
         redirect_to holiday_path(@holiday)
       else
         render 'new'
@@ -52,10 +58,17 @@ class HolidaysController < ApplicationController
     @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ? AND id != ?", @holiday.start_date, @holiday.end_date, current_user.id, @holiday.id)
     @holiday_exist.uniq!
     if  @holiday_exist.count > 0
-      @alert_box = true
+      flash.now[:info] = "You have already Holliday(s) between these dates:</br>"
+      @holiday_exist.each do |holiday|
+        flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
+        flash.now[:info] += "</br> Content: #{holiday.content} </br>"
+      end
+      flash.now[:info] += "</br> Please delete these Holiday(s) first. "
       render 'edit'
     else
       if @holiday.update(holiday_params)
+        flash[:notice] = "Holiday was change with sucess!"
         redirect_to @holiday
       else
         render 'edit'
@@ -69,6 +82,7 @@ class HolidaysController < ApplicationController
       redirect_to root_url
     end
     @holiday.destroy
+    flash[:notice] = "Holiday was deleted with sucess!"
     redirect_to holidays_path
   end
 

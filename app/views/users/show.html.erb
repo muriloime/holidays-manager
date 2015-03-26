@@ -9,7 +9,7 @@
                 textColor: 'black',
                 title: '<%= holiday.user.name %>',
                 start: '<%= holiday.start_date %>',
-                end: '<%= holiday.end_date %>',
+                end: '<%= holiday.end_date.tomorrow %>',
                 url: '<%= if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end %>',
                 color: '<%= if (holiday.status=="Pending") then "gray" elsif (holiday.status=="Confirmed") then "blue" else "red" end%>'
             },

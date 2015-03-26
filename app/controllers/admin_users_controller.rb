@@ -24,6 +24,7 @@ before_action :is_admin_in
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+      flash[:notice] = "The #{@user.name} was updated with sucess!"
       redirect_to admin_user_path(@user)
     else
       render 'edit'
@@ -35,7 +36,8 @@ before_action :is_admin_in
     require 'securerandom'
     @user.password = SecureRandom.hex[0,10]
     if @user.save
-      flash[:danger] = "The temporary password of #{@user.name} is: #{@user.password}"
+      flash[:notice] = "The #{@user.name} was created with sucess!"
+      flash[:key] = "The temporary password of #{@user.name} is: #{@user.password}"
       redirect_to admin_user_path(@user)
     else
       render 'new'
@@ -44,8 +46,8 @@ before_action :is_admin_in
 
   def destroy
     @user = User.find(params[:id])
+    flash[:notice] = "The #{@user.name} was deleted with sucess!"
     @user.destroy
-
     redirect_to admin_users_path
   end
 

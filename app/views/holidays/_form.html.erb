@@ -11,19 +11,6 @@
     </div>
   <% end %>
 
-    <% if @alert_box == true %>
-        <div id="dialog-confirm"></div>
-        <script>
-            alert("You have already Holliday(s) between these dates:\n" +
-                    <% @holiday_exist.each do |holiday| %>
-                    "\n Start Date: <%= holiday.start_date.strftime("%d/%m/%y") %>" +
-                    "\n End Date: <%= holiday.end_date.strftime("%d/%m/%y") %>" +
-                    "\n Content: <%= holiday.content %> \n" +
-                    <% end %>
-                "\n Please delete these Holiday(s) first. ")
-        </script>
-    <% end %>
-
     <div class="field">
     <%= f.label :start_date %><br>
     <%= f.date_select(:start_date, order: [:day, :month, :year]) %>

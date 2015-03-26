@@ -99,21 +99,40 @@ footer {
 
 
 //Minha parte
-.notice, .danger, .warning, .info {
+
+.notice {
   font-weight: bold;
   margin: -10px 0 15px 0;
   padding: 5px 5px 5px 27px;
-}
-
-.notice {
-  border: 1px solid #9c9;
-  background: #e2f9e3 url('images/wrong.png') no-repeat 5px center;
+  border: 2px solid #9c9;
+  background: #e2f9e3 url('tick.png') no-repeat 5px center;
   color: #060;
 }
 
 .danger {
-  border: 1px solid #c68484;
-  background: #fcc url('../images/wrong.png') no-repeat 5px center;
+  font-weight: bold;
+  margin: -10px 0 15px 0;
+  padding: 5px 5px 5px 27px;
+  border: 2px solid #c68484;
+  background: #fcc url('wrong.png') no-repeat 5px center;
   color: #c00;
+}
+
+.info {
+  font-weight: bold;
+  margin: -10px 0 15px 0;
+  padding: 5px 5px 5px 27px;
+  border: 2px solid #7BA6D6;
+  background: #E7F3FF  url('info.png') no-repeat 5px center;
+  color: #5C7CA0;
+}
+
+.key {
+  font-weight: bold;
+  margin: -10px 0 15px 0;
+  padding: 5px 5px 5px 27px;
+  border: 2px solid #8CD76B;
+  background: #E7FFD6 url('key.png') no-repeat 5px center;
+  color: #BF9E1B;
 }
 

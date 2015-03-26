@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       if params[:user][:new_password] == params[:user][:repeat_new_password]
         if @user.update(user_params)
-          flash[:danger] = "The new password was saved in the system"
+          flash[:notice] = "The new password was saved in the system"
           redirect_to @user
         else
           flash[:danger] = "The new password required 6 to 10 caracters"

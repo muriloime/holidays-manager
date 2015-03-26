@@ -1,6 +1,6 @@
 <% days_start = (@holiday.start_date - Date.today).to_s.chomp('/1')
-   days_end = (@holiday.end_date - Date.today).to_s.chomp('/1')
-   days_total = (@holiday.end_date - @holiday.start_date).to_s.chomp('/1')
+   days_end = (@holiday.end_date - Date.today + 1).to_s.chomp('/1')
+   days_total = (@holiday.end_date - @holiday.start_date + 1).to_s.chomp('/1')
    if (days_start.to_i <= 0) then days_start = "-" end
    if (days_end.to_i <= 0) then days_end = "-" end %>
 
