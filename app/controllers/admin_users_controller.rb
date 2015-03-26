@@ -36,6 +36,7 @@ before_action :is_admin_in
     require 'securerandom'
     @user.password = SecureRandom.hex[0,10]
     if @user.save
+      ExampleMailer.sample_email("cirozito@gmail.com").deliver
       flash[:notice] = "The #{@user.name} was created with sucess!"
       flash[:key] = "The temporary password of #{@user.name} is: #{@user.password}"
       redirect_to admin_user_path(@user)
