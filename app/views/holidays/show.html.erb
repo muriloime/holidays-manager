@@ -1,8 +1,11 @@
 <% days_start = (@holiday.start_date - Date.today).to_s.chomp('/1')
    days_end = (@holiday.end_date - Date.today + 1).to_s.chomp('/1')
    days_total = (@holiday.end_date - @holiday.start_date + 1).to_s.chomp('/1')
+   current = false
+   if (days_start.to_i <= 0 && days_end.to_i > 0) then current = true end
    if (days_start.to_i <= 0) then days_start = "-" end
-   if (days_end.to_i <= 0) then days_end = "-" end %>
+   if (current == false) then days_end = "-" end
+%>
 
 <p>
   <strong>Start date:</strong>
@@ -46,7 +49,7 @@
 
 <p>
   <strong>Current?</strong>
-  <%= if (days_start == "-" && days_end != "-") then true else false end %>
+  <%= current %>
 </p>
 
 <%= link_to 'Edit', edit_holiday_path(@holiday) if current_user == @holiday.user %> |
