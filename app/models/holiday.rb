@@ -5,8 +5,8 @@ class Holiday < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 300 }
-  validates :start_date, date: {on_or_after: :date_today}
-  validates :end_date, date: {on_or_after: :start_date}
+  validates :start_date, date: {on_or_after: :date_today} , if: :start_date
+  validates :end_date, date: {on_or_after: :start_date} , if: :end_date
 
   def date_today
     Date.today
