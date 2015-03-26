@@ -48,7 +48,11 @@
           <td><%= days_total %></td>
           <td><%= if (days_start == "-" && days_end != "-") then true else false end %>
           <td><%= link_to 'Show', admin_holiday_path(holiday) %></td>
-          <td><%= link_to 'Change Status', edit_admin_holiday_path(holiday) %></td>
+          <% if holiday.user == current_user %>
+              <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
+          <% else %>
+              <td><%= link_to 'Change Status', edit_admin_holiday_path(holiday) %></td>
+          <% end %>
           <td><%= link_to 'Destroy', admin_holiday_path(holiday), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>
