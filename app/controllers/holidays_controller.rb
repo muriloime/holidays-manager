@@ -37,6 +37,7 @@ class HolidaysController < ApplicationController
       render 'new'
     else
       if @holiday.save
+        flash[:notice] = "Informações salvas com sucesso."
         redirect_to holiday_path(@holiday)
       else
         render 'new'
