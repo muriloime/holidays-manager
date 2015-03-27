@@ -1,31 +1,4 @@
 <h1>Callendar of Holidays</h1>
 
-<div id="calendar"></div>
-<script>
-    $('#calendar').fullCalendar({
-        events: [
-            <% @holidays.each do |holiday| %>
-            {
-                textColor: 'black',
-                title: '<%= holiday.user.name %>',
-                start: '<%= holiday.start_date %>',
-                end: '<%= holiday.end_date.tomorrow %>',
-                url: '<%= if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end %>',
-                color: '<%= if (holiday.status=="Pending") then "gray" elsif (holiday.status=="Confirmed") then "blue" else "red" end%>'
-            },
-
-            <% end %>
-        ],
-        eventClick: function(event) {
-            if (event.url) {
-                window.location.href(event.url);
-                return false;
-            }
-        }
-
-
-
-    });
-</script>
-
+<div id="calendar" holidays="<%= @holidays.map(&:to_json)%>"></div>
 

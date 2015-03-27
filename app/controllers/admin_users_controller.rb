@@ -53,7 +53,7 @@ before_action :is_admin_in
 
   private
   def user_params
-    params.require(:user).permit(:name, :login)
+    params.require(:user).permit(:name, :login, :manager)
   end
 
 

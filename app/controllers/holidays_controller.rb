@@ -1,4 +1,5 @@
 class HolidaysController < ApplicationController
+  include HolidaysHelper
 
   def index
     @holidays = Holiday.where(user_id: current_user.id)
@@ -28,19 +29,11 @@ class HolidaysController < ApplicationController
     @holiday = current_user.holidays.build(holiday_params)
     @holiday.status = "Pending"
     @holiday.status = "Confirmed" if current_user.manager?
-    @holiday_exist = Holiday.where(:start_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id)
-    @holiday_exist += Holiday.where(:end_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id)
-    @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ?", @holiday.start_date, @holiday.end_date, current_user.id)
+
+    @holiday_exist = Holiday.exist_already(@holiday, current_user, -1)
     @holiday_exist.uniq!
     if  @holiday_exist.count > 0
-      flash.now[:info] = "You have already Holliday(s) between these dates:</br>"
-      @holiday_exist.each do |holiday|
-        flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
-        flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
-        flash.now[:info] += "</br> Status: #{holiday.status}"
-        flash.now[:info] += "</br> Content: #{holiday.content} </br>"
-      end
-      flash.now[:info] += "</br> Please delete these Holiday(s) first. "
+      flash_conflict
       render 'new'
     else
       if @holiday.save
@@ -54,19 +47,11 @@ class HolidaysController < ApplicationController
 
   def update
     @holiday = Holiday.find(params[:id])
-    @holiday_exist = Holiday.where(:start_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id, id: !@holiday.id)
-    @holiday_exist += Holiday.where(:end_date => @holiday.start_date..@holiday.end_date, user_id: current_user.id, id: !@holiday.id)
-    @holiday_exist += Holiday.where("start_date <= ? AND end_date >= ? AND user_id = ? AND id != ?", @holiday.start_date, @holiday.end_date, current_user.id, @holiday.id)
+    @new_holiday = Holiday.new(holiday_params)
+    @holiday_exist = Holiday.exist_already(@new_holiday, current_user, @holiday.id)
     @holiday_exist.uniq!
     if  @holiday_exist.count > 0
-      flash.now[:info] = "You have already Holliday(s) between these dates:</br>"
-      @holiday_exist.each do |holiday|
-        flash.now[:info] += "</br> Start Date: #{holiday.start_date.strftime("%d/%m/%y")}"
-        flash.now[:info] += "</br> End Date: #{holiday.end_date.strftime("%d/%m/%y")}"
-        flash.now[:info] += "</br> Status: #{holiday.status}"
-        flash.now[:info] += "</br> Content: #{holiday.content} </br>"
-      end
-      flash.now[:info] += "</br> Please delete these Holiday(s) first. "
+      flash_conflict
       render 'edit'
     else
       if @holiday.update(holiday_params)
