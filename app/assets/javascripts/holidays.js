@@ -1,8 +1,8 @@
 $('document').ready(function() {
 
-    $('#calendar').fullCalendar(
+        $('#calendar').fullCalendar(
         {
-            events: $('#calendar').attr('holidays'),
+            events: $(this).attr('holidays'),
             eventClick: function (event) {
                 if (event.url) {
                     window.location.href(event.url);
@@ -10,4 +10,5 @@ $('document').ready(function() {
                 }
             }
         });
+
 });
