@@ -1,5 +1,5 @@
 class AdminUsersController < ApplicationController
-before_action :is_admin_in
+  before_action :is_admin_in
 
   def is_admin_in
     manager_action

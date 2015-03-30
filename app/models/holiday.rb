@@ -28,7 +28,7 @@ class Holiday < ActiveRecord::Base
     :title => "#{self.user.name} - #{self.content}",
     :start => self.start_date,
     :end => self.end_date.tomorrow,
-    :url => Rails.application.routes.url_helpers.holiday_path(self) #if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end
+    :url => Rails.application.routes.url_helpers.holiday_path(self)
     }
   end
 
