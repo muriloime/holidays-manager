@@ -18,13 +18,17 @@ class Holiday < ActiveRecord::Base
          user.holidays.where("start_date <= ? AND end_date >= ? AND id != ?", holiday.start_date, holiday.end_date, holiday_id).to_a
   end
 
-  def to_json()
+  def as_json(options = {})
+    collor = '#999999'
+    if self.status == "Confirmed" then collor = '#00CCFF' end
+    if self.status == "Canceled" then collor = '#FF3030' end
     {
     :textColor => 'black',
-    :title => self.user.name,
+    :color => collor,
+    :title => "#{self.user.name} - #{self.content}",
     :start => self.start_date,
     :end => self.end_date.tomorrow,
-    :url => ''  #if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end
+    :url => Rails.application.routes.url_helpers.holiday_path(self) #if current_user.manager? then admin_holiday_path(holiday) else holiday_path(holiday) end
     }
   end
 

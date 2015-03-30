@@ -6,9 +6,8 @@ class AdminHolidaysController < ApplicationController
   end
 
   def index
-    current_user.get_apptoprite_holidays
     @holidays_pending = Holiday.where(status: "Pending")
-    @holidays_confirmed = Holiday.where(status: "Confirmed") if current_user.is_admin
+    @holidays_confirmed = Holiday.where(status: "Confirmed") if current_user.manager?
     @holidays_canceled = Holiday.where(status: "Canceled")
   end
 

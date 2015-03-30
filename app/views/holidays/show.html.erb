@@ -52,7 +52,11 @@
   <%= current %>
 </p>
 
-<%= link_to 'Edit', edit_holiday_path(@holiday) if current_user == @holiday.user %> |
+<% if current_user == @holiday.user%>
+    <%= link_to 'Edit', edit_holiday_path(@holiday)%> |
+<%elsif current_user.manager? %>
+    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday)%> |
+<% end %>
 <%= link_to 'My Holidays', holidays_path %> |
 <%= link_to 'Callendar', root_url %>
 
