@@ -5,6 +5,8 @@ gem 'rails', '4.2.0'
 
 gem 'execjs'
 
+gem 'pry'
+
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -37,6 +39,8 @@ gem 'autoprefixer-rails'
 
 gem 'momentjs-rails'
 
+gem 'seed_dump'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -54,6 +58,10 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "faker", "~> 1.4.3"
+  gem "capybara", "~> 2.4.3"
+  gem 'capybara-webkit', '~> 1.3.1'
+  gem 'database_cleaner'
 
   gem 'rspec-rails'
   gem 'autotest'

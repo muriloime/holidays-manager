@@ -1,9 +1,12 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :holiday do
-    content "MyText"
-user nil
-start_date "2015-03-17"
-end_date "2015-03-17"
+    start_date { Faker::Date }
+    end_date { Faker::Date }
+    content "blabla"
+    user_id 1
+    status "Confirmed"
+    sequence(:id) { |n| "#{n}"}
   end
-
 end
