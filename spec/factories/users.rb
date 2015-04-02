@@ -5,10 +5,10 @@ FactoryGirl.define do
     login { Faker::Internet.email }
     name "tester"
     password "senha123"
-  end
 
-  factory :manager do
-    manager true
-  end
+    factory :admin do
+      manager true
+    end
 
+  end
 end

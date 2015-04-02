@@ -55,6 +55,7 @@ RSpec.configure do |config|
   end
 
   config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
+  config.include Capybara::DSL
 
 
   # RSpec Rails can automatically mix in different behaviours to your tests

@@ -10,10 +10,11 @@ feature 'All Users' do
   scenario "see holidays in callendar", js: true do
     user1 = FactoryGirl.create(:user, name:"ciro")
     user2 = FactoryGirl.create(:user, name:"chang")
-    sign_in user1
-
     holiday1 = FactoryGirl.create(:holiday, user_id: user1.id, start_date: Date.today, end_date: Date.today + 1)
     holiday2 = FactoryGirl.create(:holiday, user_id: user2.id, start_date: Date.today + 2, end_date: Date.today + 3)
+    sign_in user1
+
+
     expect(page).to have_content "#{user1.name} - #{holiday1.content}"
     expect(page).to have_content "#{user2.name} - #{holiday2.content}"
   end
@@ -38,6 +39,7 @@ feature 'All Users' do
     select(Date.today.year, :from => 'holiday_end_date_1i')
     fill_in 'Content', with: 'blabla'
     click_on 'Create Holiday'
+    expect(page).to have_content 'Holiday was created with sucess!'
     }.to change(Holiday, :count).by(1)
   end
 
@@ -57,4 +59,14 @@ feature 'All Users' do
 
     expect(page).to have_content 'The new password was saved in the system'
   end
+
+  scenario "log out", js: true do
+    user = FactoryGirl.create(:user)
+    sign_in user
+
+    click_on 'Log out'
+
+    expect(page).to have_content "Log in"
+  end
+
 end
