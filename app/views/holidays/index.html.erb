@@ -1,3 +1,5 @@
+<h2>Total Business Days of <%= current_user.name %> Holidays: <%= holidays_count(current_user)%></h2>
+
 <h1>Listing Holidays of <%= current_user.name %></h1>
 
 <style>
@@ -22,6 +24,7 @@
         <th>Days to Start</th>
         <th>Days to End</th>
         <th>Total of Days</th>
+        <th>Total of Business Days</th>
         <th>Current?</th>
         <th colspan="3">Settings</th>
       </tr>
@@ -32,6 +35,7 @@
       <% days_start = (holiday.start_date - Date.today).to_s.chomp('/1')
          days_end = (holiday.end_date - Date.today + 1).to_s.chomp('/1')
          days_total = (holiday.end_date - holiday.start_date + 1).to_s.chomp('/1')
+         days_total_business = business_days_between(holiday.start_date, holiday.end_date)
          current = false
          if (days_start.to_i <= 0 && days_end.to_i > 0) then current = true end
          if (days_start.to_i <= 0) then days_start = "-" end
@@ -45,7 +49,8 @@
         <td><%= holiday.status %></td>
         <td><%= days_start  %></td>
         <td><%= days_end %></td>
-        <td><%= days_total  %></td>
+        <td><%= days_total %></td>
+        <td><%= days_total_business  %></td>
         <td><%= current %></td>
         <td><%= link_to 'Show', holiday %></td>
         <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>

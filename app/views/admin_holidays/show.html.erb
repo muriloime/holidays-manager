@@ -1,6 +1,7 @@
 <% days_start = (@holiday.start_date - Date.today).to_s.chomp('/1')
 days_end = (@holiday.end_date - Date.today + 1).to_s.chomp('/1')
 days_total = (@holiday.end_date - @holiday.start_date + 1).to_s.chomp('/1')
+days_total_business = business_days_between(@holiday.start_date, @holiday.end_date)
 current = false
 if (days_start.to_i <= 0 && days_end.to_i > 0) then current = true end
 if (days_start.to_i <= 0) then days_start = "-" end
@@ -45,6 +46,11 @@ if (current == false) then days_end = "-" end
 <p>
   <strong>Total of Days:</strong>
   <%= days_total  %>
+</p>
+
+<p>
+  <strong>Total of Business Days:</strong>
+  <%= days_total_business  %>
 </p>
 
 <p>

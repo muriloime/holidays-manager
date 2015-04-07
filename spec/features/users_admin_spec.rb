@@ -50,6 +50,20 @@ feature 'Users Admin' do
     }.to change(User, :count).by(1)
   end
 
+  scenario "Delete a User", js: true do
+    admin = FactoryGirl.create(:admin)
+    sign_in admin
+
+    visit admin_users_path
+
+    expect{
+      click_on 'Destroy'
+      page.driver.browser.accept_js_confirms
+
+    }.to change(User, :count).by(-1)
+
+  end
+
   scenario "Change Status of a Holiday to Confirmed", js: true do
     admin = FactoryGirl.create(:admin)
     user = FactoryGirl.create(:user)
@@ -64,6 +78,21 @@ feature 'Users Admin' do
     expect(page).to have_content 'The holiday status was changed with sucess!'
 
     expect(Holiday.find(holiday.id).status).to eq "Confirmed"
+  end
+
+  scenario "Delete a Holiday", js: true do
+    admin = FactoryGirl.create(:admin)
+    user = FactoryGirl.create(:user)
+    holiday = FactoryGirl.create(:holiday, user_id: user.id)
+    sign_in admin
+
+    visit admin_holidays_path
+
+    expect{
+    click_on 'Destroy'
+    page.driver.browser.accept_js_confirms
+    expect(page).to have_content 'The holiday was deleted with sucess!'
+    }.to change(Holiday, :count).by(-1)
 
   end
 
