@@ -10,6 +10,7 @@ class HolidaysController < ApplicationController
   end
 
   def new
+    @my_holidays = Holiday.where(user_id: current_user.id)
     @holiday = Holiday.new
   end
 
@@ -26,6 +27,7 @@ class HolidaysController < ApplicationController
   end
 
   def create
+    @my_holidays = Holiday.where(user_id: current_user.id)
     @holiday = current_user.holidays.build(holiday_params)
     @holiday.status = "Pending"
     @holiday.status = "Confirmed" if current_user.manager?

@@ -1,3 +1,6 @@
+<div style='float: left'>
+<h2>Create a Holiday</h2>
+
 <%= form_for(@holiday) do |f| %>
   <% if @holiday.errors.any? %>
     <div id="error_explanation">
@@ -29,4 +32,11 @@
   </div>
 <% end %>
 
+  <%= link_to 'Back', holidays_path %>
+
+</div>
+
+<div style='float: right'><h2><%=@my_holidays.first.user.name %> Holidays</h2>
+  <div  id="calendar" class="small-calendar" holidays="<%= @my_holidays.to_json %>"></div>
+</div>
 
