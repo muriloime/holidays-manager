@@ -8,4 +8,13 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 50 }
   validates :login, presence: true , length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
+  def get_all_days_holidays_business
+    holidays_sum = 0;
+    holidays_confirmed = Holiday.where(status:"Confirmed", user_id: id)
+    holidays_confirmed.each do |holiday|
+      holidays_sum += holiday.get_days_total_business.to_i
+    end
+    return holidays_sum
+  end
+
 end

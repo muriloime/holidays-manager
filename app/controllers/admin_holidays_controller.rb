@@ -41,5 +41,4 @@ class AdminHolidaysController < ApplicationController
     params.require(:holiday).permit(:status)
   end
 
-
 end

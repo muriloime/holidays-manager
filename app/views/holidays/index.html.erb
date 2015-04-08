@@ -1,4 +1,4 @@
-<h2>Total Business Days of <%= current_user.name %> Holidays Confirmed: <%= holidays_count(current_user)%></h2>
+<h2>Total Business Days of <%= current_user.name %> Holidays Confirmed: <%= current_user.get_all_days_holidays_business%></h2>
 
 <h1>Listing Holidays of <%= current_user.name %></h1>
 
@@ -34,26 +34,17 @@
   <tbody>
     <% @holidays.each do |holiday| %>
 
-      <% days_start = (holiday.start_date - Date.today).to_s.chomp('/1')
-         days_end = (holiday.end_date - Date.today + 1).to_s.chomp('/1')
-         days_total = (holiday.end_date - holiday.start_date + 1).to_s.chomp('/1')
-         days_total_business = business_days_between(holiday.start_date, holiday.end_date)
-         current = false
-         if (days_start.to_i <= 0 && days_end.to_i > 0) then current = true end
-         if (days_start.to_i <= 0) then days_start = "-" end
-         if (current == false) then days_end = "-" end
-      %>
       <tr>
         <td><%= holiday.start_date.strftime("%d/%m/%y") %></td>
         <td><%= holiday.end_date.strftime("%d/%m/%y") %></td>
         <td><%= holiday.content %></td>
         <td><%= holiday.user.name %></td>
         <td><%= holiday.status %></td>
-        <td><%= days_start  %></td>
-        <td><%= days_end %></td>
-        <td><%= days_total %></td>
-        <td><%= days_total_business  %></td>
-        <td><%= current %></td>
+        <td><%= holiday.get_days_to_start %></td>
+        <td><%= holiday.get_days_to_end %></td>
+        <td><%= holiday.get_days_total %></td>
+        <td><%= holiday.get_days_total_business %></td>
+        <td><%= holiday.current? %></td>
         <td><%= link_to 'Show', holiday %></td>
         <td><%= link_to 'Edit', edit_holiday_path(holiday) %></td>
         <td><%= link_to 'Destroy', holiday, method: :delete, data: { confirm: 'Are you sure?' } %></td>

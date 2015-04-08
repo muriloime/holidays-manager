@@ -36,7 +36,7 @@
 
 </div>
 
-<div style='float: right'><h2><%=@my_holidays.first.user.name %> Holidays</h2>
+<div style='float: right'><h2><%= current_user.name %> Holidays</h2>
   <div  id="calendar" class="small-calendar" holidays="<%= @my_holidays.to_json %>"></div>
 </div>
 
