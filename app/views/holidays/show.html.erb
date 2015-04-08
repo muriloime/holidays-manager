@@ -49,10 +49,10 @@
 </p>
 
 <% if current_user == @holiday.user%>
-    <%= link_to 'Edit', edit_holiday_path(@holiday)%> |
+    <%= link_to 'Edit', edit_holiday_path(@holiday), class: 'btn_link'%>
 <%elsif current_user.manager? %>
-    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday)%> |
+    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday), class: 'btn_link'%>
 <% end %>
-<%= link_to 'My Holidays', holidays_path %> |
-<%= link_to 'Callendar', root_url %>
+<%= link_to 'My Holidays', holidays_path, class: 'btn_link' %>
+<%= link_to 'Callendar', root_url , class: 'btn_link'%>
 

@@ -1,3 +1,4 @@
+
 <p>
   <strong>Start date:</strong>
   <%= @holiday.start_date.strftime("%d/%m/%y") %>
@@ -49,9 +50,9 @@
 </p>
 
 <% if @holiday.user == current_user %>
-    <%= link_to 'Edit', edit_holiday_path(@holiday) %> |
+    <%= link_to 'Edit', edit_holiday_path(@holiday),class:'btn_link'  %>
 <% else %>
-    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday) %> |
+    <%= link_to 'Change Status', edit_admin_holiday_path(@holiday),class:'btn_link'  %>
 <% end %>
-<%= link_to 'Holiday Settings', admin_holidays_path %> |
-<%= link_to 'Callendar', root_url %>
+<%= link_to 'Holiday Settings', admin_holidays_path,class:'btn_link'  %>
+<%= link_to 'Callendar', root_url,class:'btn_link'  %>

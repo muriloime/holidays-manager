@@ -1,8 +1,13 @@
+
+
 <h2>Total Business Days of <%= current_user.name %> Holidays Confirmed: <%= current_user.get_all_days_holidays_business%></h2>
 
 <h1>Listing Holidays of <%= current_user.name %></h1>
 
 <div id="calendar" class="small-calendar" holidays="<%= @holidays.to_json %>"></div>
+
+<center><%= link_to 'New Holiday', new_holiday_path, class: 'btn_submit', style:'color:#FFFFFF;'%></center>
+</br>
 
 <style>
     table, th, td {
@@ -53,9 +58,7 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Holiday', new_holiday_path %>
 
 
 

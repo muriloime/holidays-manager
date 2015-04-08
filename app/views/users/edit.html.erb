@@ -1,3 +1,4 @@
+<div align="center">
 <h1>Change Password of <%= current_user.name %></h1>
 
 <%= form_for :user, :url => password_change_path do |f| %>
@@ -30,10 +31,11 @@
 
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit 'Update Password',:class => 'btn_submit'%>
     </div>
 
 <% end %>
 
 
-<%= link_to 'Callendar', root_url %>
+<%= link_to 'Calendar', root_url , class: 'btn_link' %>
+</div>
