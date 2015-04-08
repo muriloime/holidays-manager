@@ -51,6 +51,20 @@ class AdminUsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def reset_password
+    @user = User.find(params[:id])
+    require 'securerandom'
+    @user.password = SecureRandom.hex[0,10]
+    if @user.save
+      flash[:key] = "The temporary password of #{@user.name} is: #{@user.password}"
+      redirect_to admin_users_path
+    else
+      flash[:danger] = "It is not possible do this"
+      redirect_to admin_users_path
+    end
+
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :login, :manager)

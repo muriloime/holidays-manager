@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   get 'logout'  => 'sessions#destroy'
 
   post   'password_change'   => 'users#update_password'
+  get    'reset_password/:id' => 'admin_users#reset_password', as: 'reset_password'
 
   resources :holidays
   resources :users
   resources :admin_holidays
-  resources :admin_users
+  resources :admin_users do
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
