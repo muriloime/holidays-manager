@@ -6,60 +6,13 @@
 
 <p>Your holiday was canceled by the administrator</p>
 
-----------------Info--------------------
-<p>
-  <strong>Start date:</strong>
-  <%= @holiday.start_date.strftime("%d/%m/%y") %>
-</p>
+<%= render 'info_holidays' %>
 
-<p>
-  <strong>End date:</strong>
-  <%= @holiday.end_date.strftime("%d/%m/%y") %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @holiday.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @holiday.user.name %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @holiday.status %>
-</p>
-
-<p>
-  <strong>Days to Start:</strong>
-  <%= @holiday.get_days_to_start  %>
-</p>
-
-<p>
-  <strong>Days to End:</strong>
-  <%= @holiday.get_days_to_end  %>
-</p>
-
-<p>
-  <strong>Total of Days:</strong>
-  <%= @holiday.get_days_total  %>
-</p>
-
-<p>
-  <strong>Total of Business Days:</strong>
-  <%= @holiday.get_days_total_business %>
-</p>
-
-<p>
-  <strong>Current?</strong>
-  <%= @holiday.current? %>
-</p>
-----------------------------------------
 <p>
   <%= link_to "Click here", holidays_path %> to see your holidays.
 </p>
+
+<%= render '_notifications' %>
 
 <p>
   Att,<br/>
