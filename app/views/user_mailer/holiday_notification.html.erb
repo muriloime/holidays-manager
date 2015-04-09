@@ -2,8 +2,13 @@
 
 <p>Hi <%= @admin.name %>,</p>
 
+<p>A new Holiday of <%= @holiday.user.name %> had created!</p>
+
 <p>
-  A new Holiday Pending had created! Click on the link below to see this holiday:
+  Please, <%= link_to "Click here", @holiday %> to change the status of this holiday!
 </p>
 
-<%= link_to "Holiday", @holiday %>
+<p>
+  Att,<br/>
+  Hi <%= @admin.name %>,
+</p>
