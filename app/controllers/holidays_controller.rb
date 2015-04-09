@@ -39,7 +39,7 @@ class HolidaysController < ApplicationController
       render 'new'
     else
       if @holiday.save
-        @admin = User.find(login: "ciro.chang@studiare.com.br")
+        @admin = User.where(login: "ciro.chang@studiare.com.br").first
         UserMailer.holiday_notification(@admin,@holiday).deliver_now
         flash[:notice] = "Holiday was created with sucess!"
         redirect_to holiday_path(@holiday)
