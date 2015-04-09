@@ -7,7 +7,7 @@
 <%= render 'info_holidays' %>
 
 <p>
-  Please, <%= link_to "Click here", admin_holiday_path(@holiday) %> to see better and change the status of this holiday</br>
+  Please, <%= link_to "Click here", admin_holiday_url(@holiday) %> to see better and change the status of this holiday</br>
   obs: <%= @holiday.user.name %> may have edited this holiday.
 </p>
 
