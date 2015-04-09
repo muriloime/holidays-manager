@@ -1,0 +1,30 @@
+<div align="center">
+  <h1>Email Configuration of <%= current_user.name %></h1>
+
+  <%= form_for :user, :url => update_emails_configuration_path do |f| %>
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this holiday from being saved:</h2>
+
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="field">
+        <h2>Receive emails notifications</h2>
+          <li><%= f.radio_button :emails_receiver, true %> On</li>
+          <li><%= f.radio_button :emails_receiver, false %> Off</li>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Save Configuration", class: 'btn_submit' %>
+      </div>
+
+  <% end %>
+
+
+  <%= link_to 'Calendar', root_url , class: 'btn_link' %>
+</div>

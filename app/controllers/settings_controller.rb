@@ -1,16 +1,8 @@
-class UsersController < ApplicationController
+class SettingsController < ApplicationController
   before_action :is_current_user_in
 
   def is_current_user_in
     current_user?
-  end
-
-  def show
-    @holidays = Holiday.all
-    respond_to do |format|
-      format.html # new.html.erb
-      format.js
-    end
   end
 
   def edit
@@ -38,14 +30,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def emails_configuration
+  def edit_emails_configuration
+    @user = current_user
+  end
 
+  def update_emails_configuration
+    @user = User.find(current_user.id)
+    if @user.update_attributes(user_params)
+      flash[:notice] = "The Configuration for #{@user.login} was updated with sucess!"
+      redirect_to edit_emails_configuration_path
+    else
+      render 'edit'
+    end
   end
 
   private
   def user_params
-    params[:user][:password] = params[:user][:new_password]
-    params.require(:user).permit(:name, :login, :password, :manager)
+    params.require(:user).permit(:emails_receiver)
   end
 
 end

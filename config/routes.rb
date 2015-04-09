@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   get 'logout'  => 'sessions#destroy'
 
+  #settings
+  get    'edit_emails_configuration', to: 'settings#edit_emails_configuration', as: 'edit_emails_configuration'
+  post   'update_emails_configuration'   => 'settings#update_emails_configuration'
   post   'password_change'   => 'users#update_password'
+
+
   get    'reset_password/:id' => 'admin_users#reset_password', as: 'reset_password'
 
   resources :holidays
