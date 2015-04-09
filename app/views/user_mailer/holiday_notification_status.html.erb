@@ -1,0 +1,27 @@
+<h1>Holidays Manager</h1>
+
+<p>Hi <%= @user.name %>,</p>
+
+<% if @holiday.status == "Confirmed" %>
+    <p>Congratulations!!</p>
+    <p>Your holiday was confirmed by the administrator!</p>
+<% elsif @holiday.status == "Canceled" %>
+    <p>Sorry, but...</p>
+    <p>Your holiday was canceled by the administrator</p>
+<% else %>
+    <p>Your holiday was chaged status to "Pending" by the administrator</p>
+<% end%>
+
+
+<%= render 'info_holidays' %>
+
+<p>
+  <%= link_to "Click here", holidays_path %> to see your holidays.
+</p>
+
+<%= render 'notifications' %>
+
+<p>
+  Att,<br/>
+  Holiday Manager
+</p>

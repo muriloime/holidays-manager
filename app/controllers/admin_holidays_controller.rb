@@ -22,6 +22,9 @@ class AdminHolidaysController < ApplicationController
   def update
     @holiday = Holiday.find(params[:id])
     if @holiday.update(holiday_params)
+      if @holiday.user.emails_receiver == true
+        UserMailer.holiday_notification_status(@holiday).deliver_now
+      end
       flash[:notice] = "The holiday status was changed with sucess!"
       redirect_to admin_holiday_path(@holiday)
     else

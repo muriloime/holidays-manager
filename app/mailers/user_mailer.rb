@@ -6,16 +6,16 @@ class UserMailer < ApplicationMailer
     mail to: admin.login, subject: "New Holiday Notification"
   end
 
-  def holiday_notification_confirmed(holiday)
+  def holiday_notification_status(holiday)
     @user = holiday.user
     @holiday = holiday
-    mail to: @user.login, subject: "Holiday was Confirmed"
-  end
-
-  def holiday_notification_canceled(holiday)
-    @user = holiday.user
-    @holiday = holiday
-    mail to: @user.login, subject: "Holiday was Canceled"
+    if @holiday.status == "Confirmed"
+      mail to: @user.login, subject: "Holiday was Confirmed"
+    elsif @holiday.status == "Canceled"
+      mail to: @user.login, subject: "Holiday is Canceled"
+    else
+      mail to: @user.login, subject: "Holiday was Pending"
+    end
   end
 
   def welcome(user)

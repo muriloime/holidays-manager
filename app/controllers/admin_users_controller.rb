@@ -37,7 +37,8 @@ class AdminUsersController < ApplicationController
     @user.password = SecureRandom.hex[0,10]
     if @user.save
       flash[:notice] = "The #{@user.name} was created with sucess!"
-      flash[:key] = "The temporary password of #{@user.name} is: #{@user.password}"
+      UserMailer.welcome(@user).deliver_now
+      flash[:key] = "The temporary password of #{@user.name} was sent to #{@user.login}"
       redirect_to admin_user_path(@user)
     else
       render 'new'
@@ -56,7 +57,8 @@ class AdminUsersController < ApplicationController
     require 'securerandom'
     @user.password = SecureRandom.hex[0,10]
     if @user.save
-      flash[:key] = "The temporary password of #{@user.name} is: #{@user.password}"
+      UserMailer.password_reset(@user).deliver_now
+      flash[:key] = "The temporary password of #{@user.name} was sent to #{@user.login}"
       redirect_to admin_users_path
     else
       flash[:danger] = "It is not possible do this"
