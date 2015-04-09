@@ -7,10 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @holidays = Holiday.all
-    respond_to do |format|
-      format.html # new.html.erb
-      format.js
-    end
   end
 
   def edit

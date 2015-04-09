@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :users
   resources :admin_holidays
   resources :admin_users
-
+  resources :microposts,          only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

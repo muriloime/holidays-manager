@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :holidays , dependent: :destroy
+  has_many :microposts , dependent: :destroy
   has_secure_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -16,6 +17,10 @@ class User < ActiveRecord::Base
       holidays_sum += holiday.get_days_total_business.to_i
     end
     return holidays_sum
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
 end
