@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6, maximum: 10}, if: :password
   validates :name, presence: true, length: { maximum: 50 }
   validates :login, presence: true , length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :emails_receiver
+
 
   def get_all_days_holidays_business
     holidays_sum = 0;
