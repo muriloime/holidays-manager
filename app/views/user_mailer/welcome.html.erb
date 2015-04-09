@@ -2,11 +2,16 @@
 
 <p>Hi <%= @user.name %>,</p>
 
-<p>Your password was reset by the administrator!</p>
+<p>Welcome to Holidays Manager!</p>
 
-<p>Here is your new temporary password:</p>
+<p>Here are your informations registered in the system</p>
 
 ----------------Info--------------------
+<p>
+  <strong>Login:</strong>
+  <%= @user.login %>
+</p>
+
 <p>
   <strong>Temporary Password:</strong>
   <%= @user.password %>
@@ -14,7 +19,7 @@
 
 ----------------------------------------
 <p>
-  <%= link_to "Click here", root_path %> to login with your new password.
+  <%= link_to "Click here", root_path %> to login with your new account.
 </p>
 
 <p>

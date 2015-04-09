@@ -19,8 +19,7 @@ Rails.application.routes.draw do
   resources :holidays
   resources :users
   resources :admin_holidays
-  resources :admin_users do
-  end
+  resources :admin_users
 
 
   # The priority is based upon order of creation: first created -> highest priority.

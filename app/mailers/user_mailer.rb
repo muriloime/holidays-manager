@@ -1,19 +1,31 @@
 class UserMailer < ApplicationMailer
 
-  def holiday_notification(admin,holiday)
+  def holiday_notification_admin(admin, holiday)
     @admin = admin
     @holiday = holiday
     mail to: admin.login, subject: "New Holiday Notification"
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.password_reset.subject
-  #
-  def password_reset
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def holiday_notification_confirmed(holiday)
+    @user = holiday.user
+    @holiday = holiday
+    mail to: @user.login, subject: "Holiday was Confirmed"
   end
+
+  def holiday_notification_canceled(holiday)
+    @user = holiday.user
+    @holiday = holiday
+    mail to: @user.login, subject: "Holiday was Canceled"
+  end
+
+  def welcome(user)
+    @user = user
+    mail to: @user.login, subject: "Welcome to Holiday Manager"
+  end
+
+  def password_reset(user)
+    @user = user
+    mail to: @user.login, subject: "Your password has been changed"
+  end
+
 end

@@ -1,0 +1,64 @@
+<h1>Holidays Manager</h1>
+
+<p>Hi <%= @admin.name %>,</p>
+
+<p>A new Holiday of <%= @holiday.user.name %> was created!</p>
+----------------Info--------------------
+<p>
+  <strong>Start date:</strong>
+  <%= @holiday.start_date.strftime("%d/%m/%y") %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @holiday.end_date.strftime("%d/%m/%y") %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @holiday.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @holiday.user.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @holiday.status %>
+</p>
+
+<p>
+  <strong>Days to Start:</strong>
+  <%= @holiday.get_days_to_start  %>
+</p>
+
+<p>
+  <strong>Days to End:</strong>
+  <%= @holiday.get_days_to_end  %>
+</p>
+
+<p>
+  <strong>Total of Days:</strong>
+  <%= @holiday.get_days_total  %>
+</p>
+
+<p>
+  <strong>Total of Business Days:</strong>
+  <%= @holiday.get_days_total_business %>
+</p>
+
+<p>
+  <strong>Current?</strong>
+  <%= @holiday.current? %>
+</p>
+----------------------------------------
+<p>
+  Please, <%= link_to "Click here", edit_admin_holiday_path(@holiday) %> to change the status of this holiday!
+</p>
+
+<p>
+  Att,<br/>
+  Holiday Manager
+</p>

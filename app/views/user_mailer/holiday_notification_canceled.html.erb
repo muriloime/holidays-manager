@@ -1,8 +1,11 @@
 <h1>Holidays Manager</h1>
 
-<p>Hi <%= @admin.name %>,</p>
+<p>Hi <%= @user.name %>,</p>
 
-<p>A new Holiday of <%= @holiday.user.name %> was created!</p>
+<p>Sorry, but...</p>
+
+<p>Your holiday was canceled by the administrator</p>
+
 ----------------Info--------------------
 <p>
   <strong>Start date:</strong>
@@ -53,9 +56,9 @@
   <strong>Current?</strong>
   <%= @holiday.current? %>
 </p>
-----------------Info--------------------
+----------------------------------------
 <p>
-  Please, <%= link_to "Click here", @holiday %> to change the status of this holiday!
+  <%= link_to "Click here", holidays_path %> to see your holidays.
 </p>
 
 <p>
