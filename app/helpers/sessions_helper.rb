@@ -11,7 +11,7 @@ module SessionsHelper
   end
 
   def current_user?
-     redirect_to @current_user if @current_user != User.find_by(id: session[:user_id])
+     redirect_to root_url if @current_user != User.find_by(id: session[:user_id])
   end
 
   # Returns true if the user is logged in, false otherwise.
@@ -27,7 +27,7 @@ module SessionsHelper
 
   def manager_action
     if current_user.manager == false
-      redirect_to @current_user
+      redirect_to root_url
     end
   end
 

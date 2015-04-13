@@ -5,8 +5,13 @@ class UsersController < ApplicationController
     current_user?
   end
 
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+
   def show
-    @holidays = Holiday.all
+    @user = User.find(params[:id])
+    @holidays = Holiday.where(user_id: @user.id)
   end
 
   def edit

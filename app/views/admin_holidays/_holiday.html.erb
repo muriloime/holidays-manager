@@ -1,8 +1,0 @@
-<li id="holiday-<%= holiday.id %>">
-  <%= link_to gravatar_for(holiday.user, size: 50), holiday.user %>
-  <span class="user"><%= link_to holiday.user.name, holiday.user %></span>
-  <span class="content"><%= holifay.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(holiday.created_at) %> ago.
-  </span>
-</li>

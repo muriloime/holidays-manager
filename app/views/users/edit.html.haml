@@ -1,0 +1,27 @@
+%div{:align => "center"}
+  %h1
+    Change Password of #{current_user.name}
+  = form_for :user, :url => password_change_path do |f|
+    - if @user.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user.errors.count, "error")
+          prohibited this holiday from being saved:
+        %ul
+          - @user.errors.full_messages.each do |message|
+            %li= message
+    %p
+      = f.label "Old Password"
+      %br/
+      = f.password_field :password
+    %p
+      = f.label :new_password
+      %br/
+      = f.password_field :new_password
+    %p
+      = f.label :repeat_new_password
+      %br/
+      = f.password_field :repeat_new_password
+    .actions
+      = f.submit 'Update Password',:class => 'btn_submit'
+  = link_to 'Calendar', root_url , class: 'btn_link'

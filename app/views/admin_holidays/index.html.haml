@@ -1,0 +1,4 @@
+%h1 Listing All Holidays
+= render 'holidays_table', :collection => @holidays = @holidays_pending, as: @holidays
+= render 'holidays_table', :collection => @holidays = @holidays_confirmed, as: @holidays
+= render 'holidays_table', :collection => @holidays = @holidays_canceled, as: @holidays

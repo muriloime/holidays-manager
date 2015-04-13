@@ -4,16 +4,16 @@ feature 'All Users' do
   scenario "log in" do
     user = FactoryGirl.create(:user)
     sign_in user
-    expect(page).to have_content 'Callendar of Holidays'
+    expect(page).to have_content 'General Calendar of Holidays'
   end
 
   scenario "see holidays in callendar", js: true do
+    visit root_path
     user1 = FactoryGirl.create(:user, name:"ciro")
     user2 = FactoryGirl.create(:user, name:"chang")
     holiday1 = FactoryGirl.create(:holiday, user_id: user1.id, start_date: Date.today, end_date: Date.today + 1)
     holiday2 = FactoryGirl.create(:holiday, user_id: user2.id, start_date: Date.today + 2, end_date: Date.today + 3)
     sign_in user1
-
 
     expect(page).to have_content "#{user1.name} - #{holiday1.content}"
     expect(page).to have_content "#{user2.name} - #{holiday2.content}"
@@ -23,7 +23,7 @@ feature 'All Users' do
     user = FactoryGirl.create(:user)
     sign_in user
 
-    click_on 'Account'
+    click_on 'Holidays'
     click_on 'My Holidays'
 
     expect(page).to have_content "Listing Holidays of #{user.name}"

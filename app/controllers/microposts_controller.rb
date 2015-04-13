@@ -1,6 +1,5 @@
 class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
-
   before_action :is_current_user_in, only: :index
 
   def is_current_user_in

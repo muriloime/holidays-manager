@@ -1,0 +1,31 @@
+%h1 Listing users
+%center= link_to 'New User', new_admin_user_path,  class: 'btn_submit', style:'color:#FFFFFF;'
+%br/
+:css
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  th, td {
+      padding: 5px;
+      text-align: center;
+  }
+%table{:style => "width:100%"}
+  %thead
+    %tr
+      %th Name
+      %th Login
+      %th Manager
+      %th Total Business Days of Holidays
+      %th{:colspan => "4"} Settings
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.login
+      %td= user.manager?
+      %td= user.get_all_days_holidays_business
+      %td= link_to 'Show', admin_user_path(user)
+      %td= link_to 'Edit', edit_admin_user_path(user)
+      %td= link_to 'Reset Password', reset_password_path(user), data: { confirm: 'Are you sure?' }
+      %td= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+%br/

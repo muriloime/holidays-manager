@@ -1,0 +1,25 @@
+= form_for @user, :url => admin_user_path(@user)  do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this holiday from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  %p
+    = f.label :name
+    %br/
+    = f.text_field :name
+  %p
+    = f.label :login
+    %br/
+    = f.text_field :login
+  .field
+    %p
+      = f.label :manager
+      = f.radio_button :manager, FALSE
+      FALSE
+      \#{f.radio_button :manager, TRUE} TRUE
+  .actions
+    = f.submit

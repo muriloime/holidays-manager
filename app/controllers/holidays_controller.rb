@@ -86,6 +86,10 @@ class HolidaysController < ApplicationController
     end
   end
 
+  def general_holidays
+    @holidays = Holiday.all
+  end
+
   private
   def holiday_params
     params.require(:holiday).permit(:content, :start_date, :end_date, :status)

@@ -1,0 +1,7 @@
+%h1 Notice Board
+.row
+  %aside.col-md-4
+    %section.user_info= render 'shared/user_info'
+    %section.micropost_form= render 'shared/micropost_form'
+  .col-md-8
+    = render 'shared/feed'

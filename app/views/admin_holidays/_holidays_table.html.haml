@@ -1,0 +1,44 @@
+:css
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  th, td {
+      padding: 5px;
+      text-align: center;
+  }
+- if (@holidays.first != nil) then
+  %h2
+    = "#{@holidays.first.status} Holidays"
+  %table{:style => "width:100%"}
+    %tr
+      %th Start date
+      %th End date
+      %th Content
+      %th User
+      %th Status
+      %th Days to Start
+      %th Days to End
+      %th Total of Days
+      %th Total of Business Days
+      %th Current?
+      %th{:colspan => "3"} Settings
+    %tbody
+      - @holidays.each do |holiday|
+        %tr
+          %td= holiday.start_date.strftime("%d/%m/%y")
+          %td= holiday.end_date.strftime("%d/%m/%y")
+          %td= holiday.content
+          %td= holiday.user.name
+          %td= holiday.status
+          %td= holiday.get_days_to_start
+          %td= holiday.get_days_to_end
+          %td= holiday.get_days_total
+          %td= holiday.get_days_total_business
+          %td= holiday.current?
+          %td= link_to 'Show', admin_holiday_path(holiday)
+          - if holiday.user == current_user
+            %td= link_to 'Edit', edit_holiday_path(holiday)
+          - else
+            %td= link_to 'Change Status', edit_admin_holiday_path(holiday)
+          %td= link_to 'Destroy', admin_holiday_path(holiday), method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,19 @@
+= link_to gravatar_for(@user, size: 50), @user
+%p
+%strong User Name:
+= @user.name
+%p
+%strong User Email:
+= @user.login
+%p
+%strong User Manager:
+= @user.manager?
+%p
+%strong Total business days of Holidays Confirmed:
+= @user.get_all_days_holidays_business
+
+%h2
+  = @user.name
+  Holidays:
+
+#calendar.small-calendar{:holidays => @holidays.to_json}

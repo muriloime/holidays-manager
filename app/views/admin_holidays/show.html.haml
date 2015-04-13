@@ -1,0 +1,36 @@
+%p
+  %strong Start date:
+  = @holiday.start_date.strftime("%d/%m/%y")
+%p
+  %strong End date:
+  = @holiday.end_date.strftime("%d/%m/%y")
+%p
+  %strong Content:
+  = @holiday.content
+%p
+  %strong User:
+  = @holiday.user.name
+%p
+  %strong Status:
+  = @holiday.status
+%p
+  %strong Days to Start:
+  = @holiday.get_days_to_start
+%p
+  %strong Days to End:
+  = @holiday.get_days_to_end
+%p
+  %strong Total of Days:
+  = @holiday.get_days_total
+%p
+  %strong Total of Business Days:
+  = @holiday.get_days_total_business
+%p
+  %strong Current?
+  = @holiday.current?
+- if @holiday.user == current_user
+  = link_to 'Edit', edit_holiday_path(@holiday),class:'btn_link'
+- else
+  = link_to 'Change Status', edit_admin_holiday_path(@holiday),class:'btn_link'
+= link_to 'Holiday Settings', admin_holidays_path,class:'btn_link'
+= link_to 'Callendar', root_url,class:'btn_link'

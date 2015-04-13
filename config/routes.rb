@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   post   'update_emails_configuration'   => 'settings#update_emails_configuration'
   post   'password_change'   => 'users#update_password'
 
-
+  #admin acess
   get    'reset_password/:id' => 'admin_users#reset_password', as: 'reset_password'
 
   resources :holidays
+  get    'general_holidays' => 'holidays#general_holidays', as: 'general_holidays'
+
   resources :users
   resources :admin_holidays
   resources :admin_users
